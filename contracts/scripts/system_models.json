@@ -1,0 +1,4 @@
+{
+    "CELESTIAL_FORMATION":["Owner", "Mass", "ElementalDispersion", "ElementalEmission"],
+    "ORBIT_FLUX":["ElementalAccretion, ElementalDispersion, Orbit, OrbitalMass, ElementalEmission"]
+}

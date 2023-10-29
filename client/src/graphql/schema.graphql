@@ -1,0 +1,21 @@
+query getEntities {
+  entities(keys: ["%"]) {
+    edges {
+      node {
+        keys
+        models {
+          __typename
+          ... on Mass {
+            mass
+          }
+          ... on Owner {
+            owner
+          }
+          ... on Orbit {
+            parent_id
+          }
+        }
+      }
+    }
+  }
+}
