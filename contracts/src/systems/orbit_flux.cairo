@@ -16,9 +16,9 @@ trait IOrbitFlux<TContractState> {
 mod orbit_flux {
     use starknet::{ContractAddress, get_caller_address};
     use super::IOrbitFlux;
-    use dojo_examples::models::mass::{Mass};
-    use dojo_examples::models::orbit::{Orbit, OrbitMass};
-    use dojo_examples::models::elemental_distribution::{
+    use astraplani::models::mass::{Mass};
+    use astraplani::models::orbit::{Orbit, OrbitMass};
+    use astraplani::models::elemental_distribution::{
         ElementalAccretion, ElementalDispersion, ElementalEmission
     };
 
@@ -93,9 +93,9 @@ mod tests {
 
     // import world dispatcher
     use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
-    use dojo_examples::models::mass::{mass, Mass};
-    use dojo_examples::models::orbit::{orbit, Orbit};
-    use dojo_examples::models::elemental_distribution::{
+    use astraplani::models::mass::{mass, Mass};
+    use astraplani::models::orbit::{orbit, Orbit};
+    use astraplani::models::elemental_distribution::{
         //elemental_emission, ElementalEmission,
         elemental_accretion, ElementalAccretion, elemental_dispersion, ElementalDispersion
     };
@@ -104,7 +104,7 @@ mod tests {
     use dojo::test_utils::{spawn_test_world, deploy_contract};
 
     // import formation sys
-    use dojo_examples::systems::celestial_formation::{
+    use astraplani::systems::celestial_formation::{
         celestial_formation, ICelestialFormationDispatcher, ICelestialFormationDispatcherTrait
     };
     use super::{orbit_flux, IOrbitFluxDispatcher, IOrbitFluxDispatcherTrait};

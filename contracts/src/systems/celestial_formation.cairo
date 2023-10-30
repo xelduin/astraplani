@@ -16,9 +16,9 @@ trait ICelestialFormation<TContractState> {
 mod celestial_formation {
     use starknet::{ContractAddress, get_caller_address, get_block_timestamp};
     use super::{ICelestialFormation, CelestialClass};
-    use dojo_examples::models::elemental_distribution::{ElementalEmission, ElementalDispersion};
-    use dojo_examples::models::mass::{Mass};
-    use dojo_examples::models::owner::{Owner};
+    use astraplani::models::elemental_distribution::{ElementalEmission, ElementalDispersion};
+    use astraplani::models::mass::{Mass};
+    use astraplani::models::owner::{Owner};
 
     #[external(v0)]
     impl CelestialFormationImpl of ICelestialFormation<ContractState> {
@@ -65,9 +65,9 @@ mod tests {
 
     // import world dispatcher
     use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
-    use dojo_examples::models::mass::{mass, Mass};
-    use dojo_examples::models::owner::{owner, Owner};
-    use dojo_examples::models::elemental_distribution::{
+    use astraplani::models::mass::{mass, Mass};
+    use astraplani::models::owner::{owner, Owner};
+    use astraplani::models::elemental_distribution::{
         elemental_emission, ElementalEmission, elemental_dispersion, ElementalDispersion
     };
 
