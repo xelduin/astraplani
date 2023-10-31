@@ -8,6 +8,7 @@ export SOZO_WORLD=$(cat ./target/dev/manifest.json | jq -r '.world.address')
 
 export CELESTIAL_FORMATION=$(cat ./target/dev/manifest.json | jq -r '.contracts[] | select(.name == "celestial_formation" ).address')
 export ORBIT_FLUX=$(cat ./target/dev/manifest.json | jq -r '.contracts[] | select(.name == "orbit_flux" ).address')
+export TEST_ANIMA=$(cat ./target/dev/manifest.json | jq -r '.contracts[] | select(.name == "test_anima" ).address')
 
 # enable system -> component authorizations
 
@@ -27,7 +28,6 @@ for system in $(echo $system_models_json | jq -r 'keys[]'); do
         contract_address="${!system_var}"
         # make the system a writer of the component
         commands+=("sozo auth writer --world "$SOZO_WORLD" $model $contract_address")
-        echo "added model"
     done
 done
 

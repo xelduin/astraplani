@@ -19,6 +19,7 @@ mod celestial_formation {
     use astraplani::models::elemental_distribution::{ElementalEmission, ElementalDispersion};
     use astraplani::models::mass::{Mass};
     use astraplani::models::owner::{Owner};
+    use astraplani::models::attributes::{ElementalAttributes};
 
     #[external(v0)]
     impl CelestialFormationImpl of ICelestialFormation<ContractState> {
@@ -36,7 +37,7 @@ mod celestial_formation {
             return entity_id.into();
         }
 
-        fn form_nebula(self: @ContractState,) -> u128 {
+        fn form_nebula(self: @ContractState) -> u128 {
             let world = self.world_dispatcher.read();
 
             let entity_id: u128 = world.uuid().into();
