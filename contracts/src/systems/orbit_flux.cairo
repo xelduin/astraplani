@@ -104,11 +104,13 @@ mod tests {
     use dojo::test_utils::{spawn_test_world, deploy_contract};
 
     // import formation sys
+    use super::{orbit_flux, IOrbitFluxDispatcher, IOrbitFluxDispatcherTrait};
     use astraplani::systems::celestial_formation::{
         celestial_formation, ICelestialFormationDispatcher, ICelestialFormationDispatcherTrait
     };
-    use super::{orbit_flux, IOrbitFluxDispatcher, IOrbitFluxDispatcherTrait};
-
+    use astraplani::systems::test_anima::{
+        test_anima, ITestAnimaDispatcher, ITestAnimaDispatcherTrait
+    };
 
     #[test]
     #[available_gas(90000000)]
@@ -133,6 +135,12 @@ mod tests {
         let celestial_formation_system = ICelestialFormationDispatcher {
             contract_address: celestial_contract_address
         };
+        let test_anima_contract = world
+            .deploy_contract('salt', test_anima::TEST_CLASS_HASH.try_into().unwrap());
+        let test_anima_system = ITestAnimaDispatcher { contract_address: test_anima_contract };
+
+        // form anima and get id
+        let anima_id = test_anima_system.create(caller, 1, 50, 50, 50, 50);
 
         let orbit_flux_address = world
             .deploy_contract('salt', orbit_flux::TEST_CLASS_HASH.try_into().unwrap());
@@ -140,7 +148,7 @@ mod tests {
 
         // call spawn()
         let nebula_id = celestial_formation_system.form_nebula();
-        let star_id = celestial_formation_system.form_star();
+        let star_id = celestial_formation_system.form_star(anima_id);
 
         // Check world state
         let nebula_mass = get!(world, nebula_id, Mass);
@@ -162,7 +170,7 @@ mod tests {
         starknet::testing::set_block_timestamp(100000);
 
         // now we need to update the elemental dispersion
-        let star2_id = celestial_formation_system.form_star();
+        let star2_id = celestial_formation_system.form_star(anima_id);
         orbit_flux_system.enter_orbit(star2_id, nebula_id);
 
         let nebula_mass = get!(world, nebula_id, Mass);

@@ -1,5 +1,5 @@
 {
-    "CELESTIAL_FORMATION":["Owner", "Mass", "ElementalDispersion", "ElementalEmission"],
+    "CELESTIAL_FORMATION":["Owner", "Mass", "ElementalDispersion", "ElementalEmission", "ElementalAttributes"],
     "ORBIT_FLUX":["ElementalAccretion, ElementalDispersion, Orbit, OrbitalMass, ElementalEmission"],
     "TEST_ANIMA":["Anima", "Owner", "ElementalAttributes"]
 }
